@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Edison - Asistente Pedagógico</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/js/script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Proyecto Edison</h1>
+        <p>Tu Asistente para la Diferenciación Pedagógica</p>
+    </header>
+
+    <main>
+        <section id="upload-section">
+            <h2>¡Hola, Profesora Ana!</h2>
+            <p>Sube el archivo .ZIP con los ensayos de tus estudiantes para comenzar el análisis.</p>
+            <form id="upload-form">
+                <input type="file" id="zip-file-input" accept=".zip" required>
+                <button type="submit">Analizar Trabajos</button>
+            </form>
+        </section>
+
+        <section id="loading-section" class="hidden">
+            <div class="spinner"></div>
+            <p>Analizando los documentos... Este proceso puede tardar unos minutos, especialmente si hay textos manuscritos.</p>
+        </section>
+
+        <section id="results-section" class="hidden">
+            <h2 id="results-title">Radiografía de tu Clase</h2>
+            <div id="results-container">
+                </div>
+            <button id="reset-button">Analizar otro grupo</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Proyecto Edison</p>
+    </footer>
+</body>
+</html>
