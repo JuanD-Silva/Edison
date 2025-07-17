@@ -46,12 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(errorData.detail || 'Ocurrió un error en el servidor.');
             }
             const data = await response.json();
-                    // --- INICIO DE LA CÁMARA DE INSPECCIÓN 3 ---
-        console.log("--- DATOS COMPLETOS RECIBIDOS DEL BACKEND ---");
-        // Usamos JSON.stringify para ver el objeto completo
-        console.log(JSON.stringify(data, null, 2));
-        console.log("-------------------------------------------");
-        // --- FIN DE LA CÁMARA DE INSPECCIÓN 3 ---
+
             renderResults(data.pipeline_results.clusters);
             loadingSection.classList.add('hidden');
             resultsSection.classList.remove('hidden');

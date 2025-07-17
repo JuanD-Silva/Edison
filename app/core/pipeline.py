@@ -47,12 +47,7 @@ async def process_zip_file(file: UploadFile) -> Dict:
         for cluster in clusters:
             if cluster['members']:
                 cluster['feedback_data'] = generar_feedback_para_cluster(cluster, all_extracted_texts)
-            # --- INICIO DE LA CÁMARA DE INSPECCIÓN 2 ---
-        print("\n--- OBJETO CLUSTERS FINAL ANTES DE ENVIAR AL FRONTEND ---")
-    # Usamos json.dumps para que se vea bonito y claro en la terminal
-        print(json.dumps(clusters, indent=2, ensure_ascii=False))
-        print("---------------------------------------------------------")
-    # --- FIN DE LA CÁMARA DE INSPECCIÓN 2 ---
+
         final_results = {
             "classification_summary": {f: len(v) for f, v in classification.items()},
             "clusters": clusters
