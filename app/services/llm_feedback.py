@@ -29,14 +29,15 @@ def generar_feedback_para_cluster(cluster_data: Dict[str, Any], all_texts: Dict[
 
         [TAREA DE GENERACIÓN DE TEXTO]
         Ahora, genera dos cosas en este formato exacto:
-        TITULO: [Escribe aquí un título descriptivo y conciso de 3 a 5 palabras para el grupo]
+        TITULO: [Escribe aquí un título descriptivo y conciso de 3 a 5 palabras para el grupo, tiene que ser un titulo diferente para cada grupo]
         ANALISIS: [Escribe aquí un único párrafo fluido de entre 60 y 90 palabras. El párrafo debe interpretar las métricas y los textos para describir de forma natural el estilo del grupo, su fortaleza principal y una oportunidad de mejora con una sugerencia concreta.]
 
         IMPORTANTE: El párrafo de ANÁLISIS debe ser puramente cualitativo. No incluyas los valores numéricos de las métricas (como el TTR o la longitud de oración). El texto debe leerse como una reflexión unificada, sin usar encabezados como "Fortalezas:".
         """
 
+        
         response = model.generate_content(prompt)
-
+        print(response)
         
         # --- LÓGICA DE PARSEO CORREGIDA Y MÁS ROBUSTA ---
         texto_completo = response.text.strip()
