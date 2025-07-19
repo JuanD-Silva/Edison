@@ -1,6 +1,6 @@
-/* src/index.css (Versión corregida y simplificada) */
+/* src/index.css */
 
-@import "tailwindcss"; /* <-- Esta línea reemplaza las 3 anteriores */
+@import "tailwindcss"; 
 
 @layer base {
   :root {

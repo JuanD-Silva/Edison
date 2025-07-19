@@ -22,17 +22,15 @@ def generar_feedback_para_cluster(cluster_data: Dict[str, Any], all_texts: Dict[
         
         # --- PROMPT MEJORADO ---
         prompt = f"""
-        [CONTEXTO INTERNO PARA TU ANÁLISIS]
-        Actúa como un experto asistente pedagógico para un profesor de secundaria. Tu tono es el de un colega experto: solidario y constructivo.
-        He analizado un grupo de {len(miembros)} ensayos. Sus métricas cuantitativas promedio son una riqueza léxica (TTR) de {centroide['ttr']:.2f} y una longitud de oración de {centroide['avg_sent_len']:.1f} palabras.
-        (Usa estos datos numéricos solo como tu referencia interna. No los menciones directamente en tu respuesta final).
+        Actúa como un experto y creativo asistente pedagógico para un profesor de secundaria. Tu tono es el de un colega experto y perspicaz.
 
-        [TAREA DE GENERACIÓN DE TEXTO]
-        Ahora, genera dos cosas en este formato exacto:
-        TITULO: [Escribe aquí un título descriptivo y conciso de 3 a 5 palabras para el grupo, tiene que ser un titulo diferente para cada grupo]
+        He analizado un grupo de {len(miembros)} ensayos. Sus métricas cuantitativas promedio son una riqueza léxica (TTR) de {centroide['ttr']:.2f} y una longitud de oración de {centroide['avg_sent_len']:.1f} palabras.
+
+        Tu tarea es generar dos cosas en este formato exacto:
+        TITULO: [Escribe aquí un título CREATIVO y ÚNICO de 3 a 5 palabras para el grupo. Evita títulos genéricos.]
         ANALISIS: [Escribe aquí un único párrafo fluido de entre 60 y 90 palabras. El párrafo debe interpretar las métricas y los textos para describir de forma natural el estilo del grupo, su fortaleza principal y una oportunidad de mejora con una sugerencia concreta.]
 
-        IMPORTANTE: El párrafo de ANÁLISIS debe ser puramente cualitativo. No incluyas los valores numéricos de las métricas (como el TTR o la longitud de oración). El texto debe leerse como una reflexión unificada, sin usar encabezados como "Fortalezas:".
+        IMPORTANTE: No uses encabezados como "Fortalezas:". El análisis debe ser un solo bloque de texto coherente y puramente cualitativo, sin mencionar los números de las métricas.
         """
 
         

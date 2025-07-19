@@ -1,59 +1,53 @@
 // src/components/ResultsSection.jsx
-import { Users, FileText, TestTube2 } from 'lucide-react';
+import { ClusterCard } from './ClusterCard'; // Importamos el nuevo componente
+import { HeartPulse } from 'lucide-react'; 
+
+const cardColors = ['purple', 'indigo', 'pink', 'teal', 'violet'];
 
 export const ResultsSection = ({ data, onReset }) => {
-  if (!data || !data.clusters) return <p>No se encontraron resultados.</p>;
+  const validClusters = data?.clusters?.filter(c => c.members.length > 0) || [];
+
+  if (validClusters.length === 0) {
+    return (
+      <div className="text-center py-10">
+        <p className="text-gray-500">No se encontraron resultados para mostrar.</p>
+      </div>
+    );
+  }
 
   return (
-    <div className="w-full max-w-5xl mx-auto animate-in fade-in duration-500">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold text-gray-800">Radiografía de tu Clase</h2>
-        <p className="text-gray-500 mt-2 max-w-2xl mx-auto">
+<div className="w-full min-h-screen animate-in fade-in duration-500 px-4 sm:px-6 lg:px-8 py-12 flex flex-col">      {/* Encabezado con logo y color actualizado */}
+      <div className="text-center mb-16">
+        <div className="flex items-center justify-center gap-x-4">
+           <HeartPulse className="h-10 w-10 text-purple-600" />
+           <h2 className="text-4xl font-extrabold tracking-tight text-purple-700 sm:text-5xl">
+             Radiografía de tu Clase
+           </h2>
+        </div>
+        <p className="mt-4 max-w-3xl mx-auto text-lg text-gray-600">
           Estos son los grupos de estudiantes identificados según su estilo de escritura.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {data.clusters.map((cluster) => (
-          cluster.members.length > 0 && (
-            <div key={cluster.cluster_id} className="shadow-lg flex flex-col hover:shadow-xl transition-shadow duration-300 border-t-4 border-blue-600 bg-white rounded-lg">
-              <div className="p-6 flex flex-col flex-grow">
-                <div className="flex-1 mb-4">
-                  <h3 className="text-lg font-semibold text-gray-900">{cluster.feedback_data?.title}</h3>
-                  <div className="flex items-center text-sm text-gray-500 mt-1">
-                    <Users className="w-4 h-4 mr-1.5" />
-                    <span>{cluster.members.length} Estudiante(s)</span>
-                  </div>
-                </div>
-
-                <div className="mb-4">
-                  <ul className="space-y-2">
-                    {cluster.members.map(student => (
-                      <li key={student} className="flex items-center text-sm text-gray-700">
-                        <FileText className="w-4 h-4 mr-2 text-blue-600/80 shrink-0" />
-                        <span className="truncate">{student.split('.')[0]}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                <div className="mt-auto pt-4 border-t border-dashed">
-                  <div className="flex items-center text-md font-semibold text-gray-900 mb-2">
-                    <TestTube2 className="w-5 h-5 mr-2 text-blue-600" />
-                    <h4>Análisis Edison</h4>
-                  </div>
-                  <p className="text-sm text-gray-600">{cluster.feedback_data?.analysis}</p>
-                </div>
-              </div>
-            </div>
-          )
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {validClusters.map((cluster, index) => (
+          <ClusterCard
+            key={cluster.cluster_id}
+            cluster={cluster}
+            color={cardColors[index % cardColors.length]}
+          />
         ))}
       </div>
-      <div className="text-center mt-12">
-        <button onClick={onReset} className="py-3 px-6 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors">
+
+      <div className="text-center mt-20">
+        <button
+          onClick={onReset}
+          className="rounded-lg bg-purple-600 px-8 py-3 text-base font-semibold text-white shadow-lg transition-transform hover:scale-105 hover:bg-purple-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600"
+        >
           Analizar Nuevo Archivo
         </button>
       </div>
     </div>
   );
 };
+  
