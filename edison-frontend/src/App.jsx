@@ -41,26 +41,17 @@ function App() {
     setResultsData(null);
     setError(null);
   };
+  // El renderizado ahora es más simple
+  if (view === 'loading') {
+    return <LoadingSection />;
+  }
+  
+  if (view === 'results') {
+    return <ResultsSection data={resultsData} onReset={handleReset} />;
+  }
 
-  const renderContent = () => {
-    switch (view) {
-      case 'loading':
-        return <LoadingSection />;
-      case 'results':
-        return <ResultsSection data={resultsData} onReset={handleReset} />;
-      case 'upload':
-      default:
-        return <UploadSection onStartAnalysis={handleAnalysis} error={error} />;
-    }
-  };
-
-  return (
-<main className="bg-gray-100 flex min-h-screen flex-col items-center justify-center p-4">
-    <div className="container max-w-2xl w-full"> {/* Añadimos un contenedor con un ancho máximo */}
-    {renderContent()}
-  </div>
-</main>
-  );
+  // Vista de subida por defecto
+  return <UploadSection onStartAnalysis={handleAnalysis} error={error} />;
 }
 
 export default App;
