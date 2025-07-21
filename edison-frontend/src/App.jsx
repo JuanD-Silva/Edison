@@ -41,17 +41,25 @@ function App() {
     setResultsData(null);
     setError(null);
   };
-  // El renderizado ahora es más simple
-  if (view === 'loading') {
-    return <LoadingSection />;
-  }
-  
-  if (view === 'results') {
-    return <ResultsSection data={resultsData} onReset={handleReset} />;
-  }
 
-  // Vista de subida por defecto
-  return <UploadSection onStartAnalysis={handleAnalysis} error={error} />;
+  const renderContent = () => {
+    switch (view) {
+      case 'loading':
+        return <LoadingSection />;
+      case 'results':
+        return <ResultsSection data={resultsData} onReset={handleReset} />;
+      case 'upload':
+      default:
+        return <UploadSection onStartAnalysis={handleAnalysis} error={error} />;
+    }
+  };
+
+  // Este 'main' ahora actúa como el contenedor y centrador para TODAS las vistas
+  return (
+    <main className="bg-gray-100 flex min-h-screen w-full items-center justify-center p-4">
+      {renderContent()}
+    </main>
+  );
 }
 
 export default App;
