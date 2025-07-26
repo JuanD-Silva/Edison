@@ -45,7 +45,7 @@ export const ResultsSection = ({ data, onReset }) => {
       <div className="text-center mt-20">
         <button
           onClick={onReset}
-          className="rounded-lg bg-purple-600 px-8 py-3 text-base font-semibold text-white shadow-lg transition-transform hover:scale-105 hover:bg-purple-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600"
+          className="rounded-lg bg-purple-600 px-8 py-3 text-base font-semibold text-white shadow-lg transition-transform hover:scale-105 hover:bg-purple-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600 cursor-pointer"
         >
           Analizar Nuevo Archivo
         </button>

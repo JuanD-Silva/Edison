@@ -22,15 +22,23 @@ def generar_feedback_para_cluster(cluster_data: Dict[str, Any], all_texts: Dict[
         
         # --- PROMPT MEJORADO ---
         prompt = f"""
-        Actúa como un experto y creativo asistente pedagógico para un profesor de secundaria. Tu tono es el de un colega experto y perspicaz.
+        Actúa como un experto asistente pedagógico para un profesor. Tu tono es el de un colega experto y perspicaz.
 
         He analizado un grupo de {len(miembros)} ensayos. Sus métricas cuantitativas promedio son una riqueza léxica (TTR) de {centroide['ttr']:.2f} y una longitud de oración de {centroide['avg_sent_len']:.1f} palabras.
 
-        Tu tarea es generar dos cosas en este formato exacto:
-        TITULO: [Escribe aquí un título CREATIVO y ÚNICO de 3 a 5 palabras para el grupo. Evita títulos genéricos.]
-        ANALISIS: [Escribe aquí un único párrafo fluido de entre 60 y 90 palabras. El párrafo debe interpretar las métricas y los textos para describir de forma natural el estilo del grupo, su fortaleza principal y una oportunidad de mejora con una sugerencia concreta.]
+        Tu tarea es generar dos cosas en este formato exacto, usando los encabezados tal cual:
+        TITULO: [Escribe aquí un título creativo y único de 3 a 5 palabras para el grupo]
+        ANALISIS:
+        **Fortalezas comunes de este grupo:**
+        - [Describe aquí la principal fortaleza del grupo en una frase concisa]
 
-        IMPORTANTE: No uses encabezados como "Fortalezas:". El análisis debe ser un solo bloque de texto coherente y puramente cualitativo, sin mencionar los números de las métricas.
+        **Áreas para reforzar:**
+        - [Describe aquí la principal área de mejora o debilidad del grupo en una frase concisa]
+
+        **Sugerencias para mejorar:**
+        - [Ofrece aquí una sugerencia o actividad concreta y accionable para el profesor]
+
+        IMPORTANTE: El análisis debe ser puramente cualitativo, sin mencionar los números de las métricas.
         """
 
         

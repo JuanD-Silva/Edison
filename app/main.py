@@ -23,12 +23,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# 2. "Monta" el directorio 'static' para que sea accesible desde el navegador
-app.mount("/static", StaticFiles(directory="static"), name="static")
+# # 2. "Monta" el directorio 'static' para que sea accesible desde el navegador
+# app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # El prefijo /api/v1 es una buena práctica para versionar nuestra API.
 app.include_router(endpoints.router, prefix="/api/v1")
 
-@app.get("/", response_class=FileResponse)
-async def read_index():
-    return "static/index.html"
+@app.get("/")
+def read_root():
+    return {"status": "Edison Backend is running"}
