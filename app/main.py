@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
-from app.api import endpoints 
+from app.api import endpoints, export
 app = FastAPI(title="Edison MVP")
 
 # --- CONFIGURACIÓN DE CORS ---
@@ -28,6 +28,7 @@ app.add_middleware(
 
 # El prefijo /api/v1 es una buena práctica para versionar nuestra API.
 app.include_router(endpoints.router, prefix="/api/v1")
+app.include_router(export.router, prefix="/api/v1/export", tags=["export"]) 
 
 @app.get("/")
 def read_root():
